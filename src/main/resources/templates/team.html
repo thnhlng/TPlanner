@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:th="http://www.thymeleaf.org">
+<head>
+
+
+
+<meta charset="UTF-8">
+    <title th:text="${teams.name}"/>
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+
+
+</head>
+
+<body>
+
+<header>
+	<h2>Logo</h2>
+	<h3>Organizing is the key to success<h3>
+
+</header>
+
+<!-- Menubar -->
+
+<ul>
+  <li>
+  <div class="dropdown">
+  <button class="dropbtn">Project</button>
+  <div class="dropdown-content">
+  <a href="#">My projects</a>
+  <a href="#">Create a new project</a>
+  <a href="#">Add project</a>
+  </div>
+</div>
+  
+  </li>
+  <li>
+  
+  <div class="dropdown">
+  <button class="dropbtn">myTPlanner</button>
+  <div class="dropdown-content">
+  <a href="#">Edit profile</a>
+  <a href="#">My tasks</a>
+  <a href="#">Logout</a>
+  </div>
+</div>
+
+</li>
+
+</ul>
+<!-- Until here Menubar -->
+<h3 th:text="${test}"/>
+<h4 th:text="'(Photo)' + ${teams.name}"/>
+
+<p th:text="'Created by user on the ' + ${teams.startingDate}">Created by 'user' on the 'date'</p>
+<p th:text="${teams.description}"/>
+<!--
+<p th:text="${tasks.taskName}"/>
+
+-->
+
+<table class="table table-stiped">
+	<tr>
+		<th>Tasks</th>
+		<th>Description</th>
+		<th>Starting Date</th>
+		<th>Deadline</th>
+		<th>Days left</th>
+		<th>Done</th>
+	</tr>
+		<tr th:each = "task : ${tasks}">
+			<td th:text="${task.taskName}" ></td>
+			<td th:text="${task.taskDescription}"></td>
+			<td th:text="${task.startingDate}"></td>
+			<td th:text="${task.deadLine}"></td>
+			<td>	
+			<p th:if="${task.daysLeft} &gt; 0" th:text="${task.daysLeft}"></p>
+   			<p th:unless="${task.daysLeft} &gt; 0">Over</p>
+			</td>
+			<td> <input type="checkbox"/></td>
+			<td><a th:href="@{/delete/task/{id}(id=${task.taskId})}">Delete</a></td>
+			<td><a th:href="@{/task/{id}(id=${task.taskId})}">more</a></td>
+	</tr>
+</table>
+<a th:href="@{/addTask/{id}(id=${teams.teamId})}">Add task</a>
+<a th:href="@{/projects}">Back to teams</a>
+
+
+</body>
+
+</html>

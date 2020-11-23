@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta charset="UTF-8">
+    <title>TeamList</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+
+</head>
+<body>
+
+
+<header>
+	<h2>Logo</h2>
+	<h3>Organizing is the key to success<h3>
+
+</header>
+
+<!-- Menubar -->
+
+<ul>
+  <li>
+  <div class="dropdown">
+  <button class="dropbtn">Project</button>
+  <div class="dropdown-content">
+  <a href="#">My projects</a>
+  <a href="#">Create a new project</a>
+  <a href="#">Add project</a>
+  </div>
+</div>
+  
+  </li>
+  <li>
+  
+  <div class="dropdown">
+  <button class="dropbtn">myTPlanner</button>
+  <div class="dropdown-content">
+  <a href="#">Edit profile</a>
+  <a href="#">My tasks</a>
+  <a href="#">Logout</a>
+  </div>
+</div>
+
+</li>
+
+</ul>
+<!-- Until here Menubar -->
+<div>
+<p th:text="'(Photo)' + ${tasks.taskName}"/>
+<p>Description<p>
+<p th:text="${tasks.taskDescription}"/>
+<p>Starting date<p>
+<p th:text="${tasks.startingDate}"/>
+<p>Deadline<p>
+<p th:text="${tasks.deadLine}"/>
+<!-- isDone if in progress -->
+<p th:text="${tasks.team.name}"/>
+<p>Cost: <p>
+<p th:text="${tasks.cost}"/>
+
+<p th:if="${tasks.daysLeft} &gt; 0"><a th:href="@{/task/cost/{id}(id=${tasks.taskId})}">add cost</a></p>
+<p th:if="${tasks.daysLeft} &gt; 0"><a th:href="@{/task/edit/{id}(id=${tasks.taskId})}">Edit</a></p>
+
+
+   		<p th:unless="${tasks.daysLeft} &gt; 0"><a th:href="@{/task/edit/{id}(id=${tasks.taskId})}"></a>Task is overdue</p>
+
+
+
+</div>
+
+
+
+
+
+</body>
+
+</html>

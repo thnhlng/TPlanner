@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Create task</title>
+<meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
+
+</head>
+
+<body>
+	<h1>Create new task</h1>
+	<div>
+		
+		<form th:object = "${task}" th:action="@{saveTask}" 
+			action="#" method="post">
+			<label for="name">Task name</label>
+			<input type="text" id="taskName" th:field="*{taskName}"/>
+			<label for="taskDescription">Description</label>
+			<input type="text" th:field="*{taskDescription}"/>
+			<label for="startingDate">StartingDate</label>
+			<input type="text" th:field="*{startingDate}"/>
+			<label for="deadLine">Deadline</label>
+			<input type="text" th:field="*{deadLine}"/>
+			<label for="teamL">Team</label>
+			<!-- <input id="teamL" th:field="*{team}" th:value="${teams}"/>
+			<input type="submit" value="SaveTask"></input>
+			 -->
+			 <label for="teamL">:</label>
+						<select id="teamL" th:field="*{team}" class="from-control">
+			<option th:each="team: ${teams}"
+					th:value="${team.teamId}"
+					th:text="${team.name}"></option>
+			 </select>
+			 <label for="startingDate">Starting date</label><br><br>
+ 				 <input type="text" name="startingD" placeholder="dd.mm.yyyy" pattern="[0-9]{2}.[0-9]{2}.[0-9]{4}"><br><br>
+			
+			<a th:href="@{/saveTask}">save me</a>
+			<input type="submit" value="SaveTask"></input>
+		</form>
+	</div>
+</body>

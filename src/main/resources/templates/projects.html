@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+<meta charset="UTF-8">
+    <title>TeamList</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+
+</head>
+<body>
+
+
+<header>
+	<h2>Logo</h2>
+	<h3>Organizing is the key to success<h3>
+
+</header>
+
+<!-- Menubar -->
+
+<ul>
+  <li>
+  <div class="dropdown">
+  <button class="dropbtn">Project</button>
+  <div class="dropdown-content">
+  <a href="#">My projects</a>
+  <a href="#">Create a new project</a>
+  <a href="#">Add project</a>
+  </div>
+</div>
+  
+  </li>
+  <li>
+  
+  <div class="dropdown">
+  <button class="dropbtn">myTPlanner</button>
+  <div class="dropdown-content">
+  <a href="#">Edit profile</a>
+  <a href="#">My tasks</a>
+  <a href="#">Logout</a>
+  </div>
+</div>
+
+</li>
+
+</ul>
+<!-- Until here Menubar -->
+
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+
+<table class="table table-stiped">
+	<tr>
+		<th>Team</th>
+	</tr>
+		<tr th:each = "team : ${teams}">
+			<td th:text="${team.name}" ></td>
+			 <td sec:authorize="hasRole('ADMIN')"><a th:href="@{/delete/{id}(id=${team.teamId})}">delete</a></td>
+			 	 <td><a th:href="@{/modify/{id}(id=${team.teamId})}">modify</a></td>
+			 	 	<td><a th:href="@{/team/{id}(id=${team.teamId})}">see more</a></td>
+			 	 
+		</tr>
+</table>
+<a href="/add">Add team</a>
+
+<form th:action="@{/logout}"method="post">
+<input type="submit"value="Sign Out"/>
+
+</body>
+
+</html>

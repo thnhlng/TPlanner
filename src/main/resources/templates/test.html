@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:th="http://www.thymeleaf.org">
+<head>
+
+
+
+<meta charset="UTF-8">
+    <title>Add CSS and JS to Thymeleaf</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+
+<title>Project List</title>
+
+</head>
+
+<body>
+
+<header>
+	<h2>Logo</h2>
+	<h3>Organizing is the key to success<h3>
+
+</header>
+
+<!-- Menubar -->
+
+<ul>
+  <li>
+  <div class="dropdown">
+  <button class="dropbtn">Project</button>
+  <div class="dropdown-content">
+  <a href="#">My projects</a>
+  <a href="#">Create a new project</a>
+  <a href="#">Add project</a>
+  </div>
+</div>
+  
+  </li>
+  <li>
+  
+  <div class="dropdown">
+  <button class="dropbtn">myTPlanner</button>
+  <div class="dropdown-content">
+  <a href="#">Edit profile</a>
+  <a href="#">My tasks</a>
+  <a href="#">Logout</a>
+  </div>
+</div>
+
+</li>
+
+</ul>
+<!-- Until here Menubar -->
+
+<img th:src="@{${'/image/display/' + ${image}}}">
+<p th:text="${teams.description}">
+
+
+
+
+</body>
+
+</html>

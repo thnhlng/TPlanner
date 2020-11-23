@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Create new project</title>
+<meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
+
+</head>
+
+<body>
+	<h1>Create new project</h1>
+	<div>
+		
+		<form th:object = "${team}" th:action="@{save}" 
+			action="#" method="post">
+			<label for="name">Project name</label>
+			<input type="text" id="name" th:field="*{name}"/>
+			<label for="description">Description</label>
+			<input type="text" th:field="*{description}"/>
+			<input type="submit" value="Save"></input>
+			
+			<select id="haveTeams">
+				<option th:each="user : ${user}" 
+					th:value="${user.id}" 
+					th:text="${user.username}">Course</option>
+			</select>
+		</form>
+	</div>
+</body>

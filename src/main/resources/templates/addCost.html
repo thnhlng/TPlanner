@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta charset="UTF-8">
+    <title>TeamList</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+
+</head>
+<body>
+
+
+<header>
+	<h2>Logo</h2>
+	<h3>Organizing is the key to success<h3>
+
+</header>
+
+<!-- Menubar -->
+
+<ul>
+  <li>
+  <div class="dropdown">
+  <button class="dropbtn">Project</button>
+  <div class="dropdown-content">
+  <a href="#">My projects</a>
+  <a href="#">Create a new project</a>
+  <a href="#">Add project</a>
+  </div>
+</div>
+  
+  </li>
+  <li>
+  
+  <div class="dropdown">
+  <button class="dropbtn">myTPlanner</button>
+  <div class="dropdown-content">
+  <a href="#">Edit profile</a>
+  <a href="#">My tasks</a>
+  <a href="#">Logout</a>
+  </div>
+</div>
+
+</li>
+
+</ul>
+<!-- Until here Menubar -->
+<div>
+<p th:text="'(Photo)' + ${task.taskName}"/>
+<p>Description<p>
+<p th:text="${task.taskDescription}"/>
+<p>Starting date<p>
+<p th:text="${task.startingDate}"/>
+<p>Deadline<p>
+<p th:text="${task.deadLine}"/>
+<!-- isDone if in progress -->
+<p th:text="${task.team.name}"/>
+<p>Cost: <p>
+<p th:text="${task.cost}"/>
+
+	<form th:object = "${task}" th:action="@{../saveTask}" 
+			action="#" method="post">
+			<input id="taskId" type="hidden" th:field="*{taskId}" readonly="readonly"/>
+	
+				<label for="cost">Cost</label>
+			<input type="text" th:field="*{cost}"/>
+					<select id="teamL" th:field="*{team}" class="from-control">
+			<option th:each="team: ${teams}"
+					th:value="${team.teamId}"
+					th:text="${team.name}"></option>
+			 </select>
+			<input type="submit" value="SaveTask"></input>
+			<a th:href="@{/addTask/saveTask}">modify</a>
+		</form>
+
+
+
+<a th:href="@{/task/edit/{id}(id=${task.taskId})}">Edit</a>
+<p th:if="${task.daysLeft} &gt; 0"><a th:href="@{/task/edit/{id}(id=${task.taskId})}">Edit</a></p>
+   		<p th:unless="${task.daysLeft} &gt; 0"><a th:href="@{/task/edit/{id}(id=${task.taskId})}"></a>Task is overdue</p>
+
+</div>
+
+
+
+
+
+</body>
+
+</html>
