@@ -1,6 +1,6 @@
 package com.example.TPlanner.domain;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Set;
 
@@ -13,9 +13,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+
+
+
 
 @Entity
+@Table(name="usertable")
 public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -46,6 +52,9 @@ public class User {
 //    @JoinColumn(name = "fileDB_id", referencedColumnName = "id")
 //    private FileDB files;
     
+//    @OneToMany(cascade = CascadeType.ALL)
+//    private List<Photo> photoList;
+//    
     private String secret = "";
 	
 	   public User() {
@@ -125,6 +134,8 @@ public class User {
 		this.haveTeams = haveTeams;
 	}
 	
+	
+	
 
 //	public FileDB getFileDB() {
 //		return files;
@@ -134,6 +145,14 @@ public class User {
 //		this.files = fileDB;
 //	}
 
+
+//	public List<Photo> getPhotoList() {
+//		return photoList;
+//	}
+//
+//	public void setPhotoList(List<Photo> photoList) {
+//		this.photoList = photoList;
+//	}
 
 	@Override
 	public String toString() {
